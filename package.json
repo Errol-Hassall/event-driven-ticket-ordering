@@ -1,0 +1,30 @@
+{
+  "name": "event-driven-ticket-ordering",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "sst start",
+    "build": "sst build",
+    "deploy": "sst deploy --stage=production",
+    "remove": "sst remove",
+    "console": "sst console",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@serverless-stack/cli": "^1.4.0",
+    "@serverless-stack/resources": "^1.4.0",
+    "@tsconfig/node16": "^1.0.3",
+    "aws-cdk-lib": "2.24.0",
+    "typescript": "^4.7.4",
+    "vitest": "^0.18.1"
+  },
+  "workspaces": [
+    "services"
+  ],
+  "dependencies": {
+    "@middy/core": "^3.1.0",
+    "@middy/http-json-body-parser": "^3.1.0",
+    "@middy/validator": "^3.1.0"
+  }
+}

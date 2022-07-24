@@ -1,0 +1,5 @@
+{
+  "name": "event-driven-ticket-ordering",
+  "region": "ap-southeast-2",
+  "main": "stacks/index.ts"
+}

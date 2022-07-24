@@ -1,0 +1,373 @@
+{
+  "version": "18.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "local-event-driven-ticket-ordering-Lambda.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "local-event-driven-ticket-ordering-Lambda.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "local-event-driven-ticket-ordering-Lambda": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://995395610326/ap-southeast-2",
+      "properties": {
+        "templateFile": "local-event-driven-ticket-ordering-Lambda.template.json",
+        "tags": {
+          "sst:app": "event-driven-ticket-ordering",
+          "sst:stage": "local"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::995395610326:role/cdk-hnb659fds-deploy-role-995395610326-ap-southeast-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::995395610326:role/cdk-hnb659fds-cfn-exec-role-995395610326-ap-southeast-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-995395610326-ap-southeast-2/9aac4b695071e2aa8b1e6477b719db7ad1b193e5c6ca78f6051cab693edef5a8.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "local-event-driven-ticket-ordering-Lambda.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::995395610326:role/cdk-hnb659fds-lookup-role-995395610326-ap-southeast-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "local-event-driven-ticket-ordering-Lambda.assets"
+      ],
+      "metadata": {
+        "/local-event-driven-ticket-ordering-Lambda": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "sst:app",
+                "Value": "event-driven-ticket-ordering"
+              },
+              {
+                "Key": "sst:stage",
+                "Value": "local"
+              }
+            ]
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/SSTMetadata": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SSTMetadata"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/Orders/Table": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "OrdersTable1F8332C7"
+            }
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/Orders/Table/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OrdersTable1F8332C7"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/Orders/Consumer_Orders_consumer/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OrdersConsumerOrdersconsumerServiceRole05DC0AF7"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/Orders/Consumer_Orders_consumer/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OrdersConsumerOrdersconsumerServiceRoleDefaultPolicyDF287C83"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/Orders/Consumer_Orders_consumer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OrdersConsumerOrdersconsumer535EC25A"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/Orders/Consumer_Orders_consumer/EventInvokeConfig/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OrdersConsumerOrdersconsumerEventInvokeConfig133C94FF"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/Orders/Consumer_Orders_consumer/DynamoDBEventSource:localeventdriventicketorderingLambdaOrdersTableDCF47315/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OrdersConsumerOrdersconsumerDynamoDBEventSourcelocaleventdriventicketorderingLambdaOrdersTableDCF4731545B8556E"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/databaseFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "databaseFunctionServiceRole82047AE1"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/databaseFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "databaseFunctionServiceRoleDefaultPolicyC03522E7"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/databaseFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "databaseFunction748C5CAC"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/databaseFunction/EventInvokeConfig/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "databaseFunctionEventInvokeConfig71DB95F1"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/order/EventBus/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "orderEventBusA352561C"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/order/order/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "order03B6A43C"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/order/order/AllowEventRulelocaleventdriventicketorderingLambdaorderTargetorderorderprocessOrderB8DF49A9": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "orderAllowEventRulelocaleventdriventicketorderingLambdaorderTargetorderorderprocessOrderB8DF49A9C243BA70"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/order/order/AllowEventRulelocaleventdriventicketorderingLambdaorderTargetorderordersendReceipt2AA7B0BD": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "orderAllowEventRulelocaleventdriventicketorderingLambdaorderTargetorderordersendReceipt2AA7B0BD55F0E459"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/order/Target_order_order_processOrder/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "orderTargetorderorderprocessOrderServiceRoleF5EC63C7"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/order/Target_order_order_processOrder/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "orderTargetorderorderprocessOrderServiceRoleDefaultPolicyF392BF4D"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/order/Target_order_order_processOrder/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "orderTargetorderorderprocessOrderB7BAA2D3"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/order/Target_order_order_processOrder/EventInvokeConfig/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "orderTargetorderorderprocessOrderEventInvokeConfigFFD9F5E0"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/order/Target_order_order_sendReceipt/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "orderTargetorderordersendReceiptServiceRoleF163EFA6"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/order/Target_order_order_sendReceipt/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "orderTargetorderordersendReceiptServiceRoleDefaultPolicy7AB7B464"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/order/Target_order_order_sendReceipt/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "orderTargetorderordersendReceipt6A8285AC"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/order/Target_order_order_sendReceipt/EventInvokeConfig/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "orderTargetorderordersendReceiptEventInvokeConfigAD7828DC"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Api/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiApiC3C473D0"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Api/DefaultStage/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiApiDefaultStageA626ED4D"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLogGroup924E5B7A"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Lambda_GET_--/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLambdaGETServiceRole57A117D1"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Lambda_GET_--/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLambdaGETServiceRoleDefaultPolicyE9384899"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Lambda_GET_--/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLambdaGET2D5CB7A7"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Lambda_GET_--/EventInvokeConfig/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLambdaGETEventInvokeConfig794FB4BC"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Route_GET_--/Integration_GET_--/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiRouteGETIntegrationGET451F73F0"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Route_GET_--/Integration_GET_---Permission": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiRouteGETIntegrationGETPermission02100559"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Route_GET_--/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiRouteGET1A9E87AB"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--order-tickets/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLambdaPOSTorderticketsServiceRoleDEF6D996"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--order-tickets/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLambdaPOSTorderticketsServiceRoleDefaultPolicy5E59FD51"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--order-tickets/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLambdaPOSTordertickets54E5CCA6"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--order-tickets/EventInvokeConfig/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLambdaPOSTorderticketsEventInvokeConfig52D32175"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Route_POST_--order-tickets/Integration_POST_--order-tickets/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiRoutePOSTorderticketsIntegrationPOSTordertickets7D683CD5"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Route_POST_--order-tickets/Integration_POST_--order-tickets-Permission": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiRoutePOSTorderticketsIntegrationPOSTorderticketsPermission3BABB361"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Route_POST_--order-tickets/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiRoutePOSTorderticketsBD9FD06B"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--process/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLambdaPOSTprocessServiceRole1F194F4B"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--process/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLambdaPOSTprocessServiceRoleDefaultPolicyA53344ED"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--process/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLambdaPOSTprocessDF2F9D1B"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--process/EventInvokeConfig/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiLambdaPOSTprocessEventInvokeConfigB8DFF10A"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Route_POST_--process/Integration_POST_--process/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiRoutePOSTprocessIntegrationPOSTprocess8EB47971"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Route_POST_--process/Integration_POST_--process-Permission": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiRoutePOSTprocessIntegrationPOSTprocessPermission02064B6C"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/api/Route_POST_--process/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiRoutePOSTprocessD2E092DB"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/ApiEndpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiEndpoint"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/local-event-driven-ticket-ordering-Lambda/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "local-event-driven-ticket-ordering-Lambda"
+    }
+  }
+}

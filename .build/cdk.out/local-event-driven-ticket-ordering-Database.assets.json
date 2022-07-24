@@ -1,0 +1,20 @@
+{
+  "version": "18.0.0",
+  "files": {
+    "037bc7c1e3f552098aa79b80a6af210f15daff2990f5ba59661403ab6b76cba5": {
+      "source": {
+        "path": "local-event-driven-ticket-ordering-Database.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "995395610326-ap-southeast-2": {
+          "bucketName": "cdk-hnb659fds-assets-995395610326-ap-southeast-2",
+          "objectKey": "037bc7c1e3f552098aa79b80a6af210f15daff2990f5ba59661403ab6b76cba5.json",
+          "region": "ap-southeast-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::995395610326:role/cdk-hnb659fds-file-publishing-role-995395610326-ap-southeast-2"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

@@ -1,0 +1,1963 @@
+{
+ "Resources": {
+  "SSTMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/SSTMetadata",
+    "sst:version": "1.4.0",
+    "sst:constructs": [
+     {
+      "id": "Orders",
+      "addr": "c8d74700890ddf9c74526741ef66fec2b6fd3fe6d8",
+      "stack": "local-event-driven-ticket-ordering-Lambda",
+      "type": "Table",
+      "data": {
+       "tableName": {
+        "Ref": "OrdersTable1F8332C7"
+       },
+       "consumers": [
+        {
+         "name": "consumer",
+         "fn": {
+          "node": "c8eea65beedcf948c0c3de16a88a920deb1ff1e0ea",
+          "stack": "local-event-driven-ticket-ordering-Lambda"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "id": "Consumer_Orders_consumer",
+      "addr": "c8eea65beedcf948c0c3de16a88a920deb1ff1e0ea",
+      "stack": "local-event-driven-ticket-ordering-Lambda",
+      "type": "Function",
+      "data": {
+       "localId": "local-event-driven-ticket-ordering-Lambda-Orders-Consumer_Orders_consumer",
+       "arn": {
+        "Fn::GetAtt": [
+         "OrdersConsumerOrdersconsumer535EC25A",
+         "Arn"
+        ]
+       }
+      }
+     },
+     {
+      "id": "databaseFunction",
+      "addr": "c8fcfb2e6931703c47ecaaddc940287744e853aeec",
+      "stack": "local-event-driven-ticket-ordering-Lambda",
+      "type": "Function",
+      "data": {
+       "localId": "local-event-driven-ticket-ordering-Lambda-databaseFunction",
+       "arn": {
+        "Fn::GetAtt": [
+         "databaseFunction748C5CAC",
+         "Arn"
+        ]
+       }
+      }
+     },
+     {
+      "id": "order",
+      "addr": "c8fecf2e3395cba316728919806fadfa19a84b4d88",
+      "stack": "local-event-driven-ticket-ordering-Lambda",
+      "type": "EventBus",
+      "data": {
+       "eventBusName": {
+        "Ref": "orderEventBusA352561C"
+       },
+       "rules": [
+        {
+         "key": "order",
+         "targets": [
+          {
+           "node": "c8186b7a1866dc882063c83c0c089ae325b7ab7111",
+           "stack": "local-event-driven-ticket-ordering-Lambda"
+          },
+          {
+           "node": "c8bf202399219d43fb4019ed3e507631c2209c770d",
+           "stack": "local-event-driven-ticket-ordering-Lambda"
+          }
+         ],
+         "targetNames": [
+          "processOrder",
+          "sendReceipt"
+         ]
+        }
+       ]
+      }
+     },
+     {
+      "id": "Target_order_order_processOrder",
+      "addr": "c8186b7a1866dc882063c83c0c089ae325b7ab7111",
+      "stack": "local-event-driven-ticket-ordering-Lambda",
+      "type": "Function",
+      "data": {
+       "localId": "local-event-driven-ticket-ordering-Lambda-order-Target_order_order_processOrder",
+       "arn": {
+        "Fn::GetAtt": [
+         "orderTargetorderorderprocessOrderB7BAA2D3",
+         "Arn"
+        ]
+       }
+      }
+     },
+     {
+      "id": "Target_order_order_sendReceipt",
+      "addr": "c8bf202399219d43fb4019ed3e507631c2209c770d",
+      "stack": "local-event-driven-ticket-ordering-Lambda",
+      "type": "Function",
+      "data": {
+       "localId": "local-event-driven-ticket-ordering-Lambda-order-Target_order_order_sendReceipt",
+       "arn": {
+        "Fn::GetAtt": [
+         "orderTargetorderordersendReceipt6A8285AC",
+         "Arn"
+        ]
+       }
+      }
+     },
+     {
+      "id": "api",
+      "addr": "c8708fdc798aa97c720f42eedd6e4962d78e4221d9",
+      "stack": "local-event-driven-ticket-ordering-Lambda",
+      "type": "Api",
+      "data": {
+       "graphql": false,
+       "url": {
+        "Fn::Join": [
+         "",
+         [
+          "https://",
+          {
+           "Ref": "apiApiC3C473D0"
+          },
+          ".execute-api.ap-southeast-2.",
+          {
+           "Ref": "AWS::URLSuffix"
+          },
+          "/"
+         ]
+        ]
+       },
+       "httpApiId": {
+        "Ref": "apiApiC3C473D0"
+       },
+       "routes": [
+        {
+         "type": "function",
+         "route": "GET /",
+         "fn": {
+          "node": "c89122ede6da6e7e7c35eb9aeb1e352d1280bd9a3e",
+          "stack": "local-event-driven-ticket-ordering-Lambda"
+         }
+        },
+        {
+         "type": "function",
+         "route": "POST /order-tickets",
+         "fn": {
+          "node": "c83c57ce3389cb34d14733dc8a34e62fe92536e415",
+          "stack": "local-event-driven-ticket-ordering-Lambda"
+         }
+        },
+        {
+         "type": "function",
+         "route": "POST /process",
+         "fn": {
+          "node": "c82d484319a1e5c2f04c7cd3522465fc594f1c8fb1",
+          "stack": "local-event-driven-ticket-ordering-Lambda"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "id": "Lambda_GET_--",
+      "addr": "c89122ede6da6e7e7c35eb9aeb1e352d1280bd9a3e",
+      "stack": "local-event-driven-ticket-ordering-Lambda",
+      "type": "Function",
+      "data": {
+       "localId": "local-event-driven-ticket-ordering-Lambda-api-Lambda_GET_-",
+       "arn": {
+        "Fn::GetAtt": [
+         "apiLambdaGET2D5CB7A7",
+         "Arn"
+        ]
+       }
+      }
+     },
+     {
+      "id": "Lambda_POST_--order-tickets",
+      "addr": "c83c57ce3389cb34d14733dc8a34e62fe92536e415",
+      "stack": "local-event-driven-ticket-ordering-Lambda",
+      "type": "Function",
+      "data": {
+       "localId": "local-event-driven-ticket-ordering-Lambda-api-Lambda_POST_-order-tickets",
+       "arn": {
+        "Fn::GetAtt": [
+         "apiLambdaPOSTordertickets54E5CCA6",
+         "Arn"
+        ]
+       }
+      }
+     },
+     {
+      "id": "Lambda_POST_--process",
+      "addr": "c82d484319a1e5c2f04c7cd3522465fc594f1c8fb1",
+      "stack": "local-event-driven-ticket-ordering-Lambda",
+      "type": "Function",
+      "data": {
+       "localId": "local-event-driven-ticket-ordering-Lambda-api-Lambda_POST_-process",
+       "arn": {
+        "Fn::GetAtt": [
+         "apiLambdaPOSTprocessDF2F9D1B",
+         "Arn"
+        ]
+       }
+      }
+     }
+    ]
+   }
+  },
+  "OrdersTable1F8332C7": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "KeySchema": [
+     {
+      "AttributeName": "customerId",
+      "KeyType": "HASH"
+     }
+    ],
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "customerId",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "PointInTimeRecoverySpecification": {
+     "PointInTimeRecoveryEnabled": true
+    },
+    "StreamSpecification": {
+     "StreamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "TableName": "local-event-driven-ticket-ordering-Orders",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/Orders/Table/Resource"
+   }
+  },
+  "OrdersConsumerOrdersconsumerServiceRole05DC0AF7": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/Orders/Consumer_Orders_consumer/ServiceRole/Resource"
+   }
+  },
+  "OrdersConsumerOrdersconsumerServiceRoleDefaultPolicyDF287C83": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "xray:PutTraceSegments",
+        "xray:PutTelemetryRecords"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "s3:*",
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt/*"
+       ]
+      },
+      {
+       "Action": "dynamodb:ListStreams",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "dynamodb:DescribeStream",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "OrdersTable1F8332C7",
+         "StreamArn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "OrdersConsumerOrdersconsumerServiceRoleDefaultPolicyDF287C83",
+    "Roles": [
+     {
+      "Ref": "OrdersConsumerOrdersconsumerServiceRole05DC0AF7"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/Orders/Consumer_Orders_consumer/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "OrdersConsumerOrdersconsumer535EC25A": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-995395610326-ap-southeast-2",
+     "S3Key": "98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "OrdersConsumerOrdersconsumerServiceRole05DC0AF7",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "SST_DEBUG_SRC_PATH": "services",
+      "SST_DEBUG_SRC_HANDLER": "functions/updateAvailability.handler",
+      "SST_DEBUG_ENDPOINT": "wss://5pjwyimqz8.execute-api.ap-southeast-2.amazonaws.com/local",
+      "SST_DEBUG_BUCKET_NAME": "local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+      "SST_FUNCTION_ID": "local-event-driven-ticket-ordering-Lambda-Orders-Consumer_Orders_consumer",
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.main",
+    "MemorySize": 1024,
+    "Runtime": "nodejs16.x",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ],
+    "Timeout": 10,
+    "TracingConfig": {
+     "Mode": "Active"
+    }
+   },
+   "DependsOn": [
+    "OrdersConsumerOrdersconsumerServiceRoleDefaultPolicyDF287C83",
+    "OrdersConsumerOrdersconsumerServiceRole05DC0AF7"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/Orders/Consumer_Orders_consumer/Resource",
+    "aws:asset:path": "asset.98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "OrdersConsumerOrdersconsumerEventInvokeConfig133C94FF": {
+   "Type": "AWS::Lambda::EventInvokeConfig",
+   "Properties": {
+    "FunctionName": {
+     "Ref": "OrdersConsumerOrdersconsumer535EC25A"
+    },
+    "Qualifier": "$LATEST",
+    "MaximumRetryAttempts": 0
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/Orders/Consumer_Orders_consumer/EventInvokeConfig/Resource"
+   }
+  },
+  "OrdersConsumerOrdersconsumerDynamoDBEventSourcelocaleventdriventicketorderingLambdaOrdersTableDCF4731545B8556E": {
+   "Type": "AWS::Lambda::EventSourceMapping",
+   "Properties": {
+    "FunctionName": {
+     "Ref": "OrdersConsumerOrdersconsumer535EC25A"
+    },
+    "BatchSize": 100,
+    "EventSourceArn": {
+     "Fn::GetAtt": [
+      "OrdersTable1F8332C7",
+      "StreamArn"
+     ]
+    },
+    "StartingPosition": "LATEST"
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/Orders/Consumer_Orders_consumer/DynamoDBEventSource:localeventdriventicketorderingLambdaOrdersTableDCF47315/Resource"
+   }
+  },
+  "databaseFunctionServiceRole82047AE1": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/databaseFunction/ServiceRole/Resource"
+   }
+  },
+  "databaseFunctionServiceRoleDefaultPolicyC03522E7": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "xray:PutTraceSegments",
+        "xray:PutTelemetryRecords"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "s3:*",
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt/*"
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "OrdersTable1F8332C7",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "OrdersTable1F8332C7",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "databaseFunctionServiceRoleDefaultPolicyC03522E7",
+    "Roles": [
+     {
+      "Ref": "databaseFunctionServiceRole82047AE1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/databaseFunction/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "databaseFunction748C5CAC": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-995395610326-ap-southeast-2",
+     "S3Key": "98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "databaseFunctionServiceRole82047AE1",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "OrdersTable1F8332C7"
+      },
+      "SST_DEBUG_SRC_PATH": "services",
+      "SST_DEBUG_SRC_HANDLER": "functions/processOrder.handler",
+      "SST_DEBUG_ENDPOINT": "wss://5pjwyimqz8.execute-api.ap-southeast-2.amazonaws.com/local",
+      "SST_DEBUG_BUCKET_NAME": "local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+      "SST_FUNCTION_ID": "local-event-driven-ticket-ordering-Lambda-databaseFunction",
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.main",
+    "MemorySize": 1024,
+    "Runtime": "nodejs16.x",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ],
+    "Timeout": 10,
+    "TracingConfig": {
+     "Mode": "Active"
+    }
+   },
+   "DependsOn": [
+    "databaseFunctionServiceRoleDefaultPolicyC03522E7",
+    "databaseFunctionServiceRole82047AE1"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/databaseFunction/Resource",
+    "aws:asset:path": "asset.98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "databaseFunctionEventInvokeConfig71DB95F1": {
+   "Type": "AWS::Lambda::EventInvokeConfig",
+   "Properties": {
+    "FunctionName": {
+     "Ref": "databaseFunction748C5CAC"
+    },
+    "Qualifier": "$LATEST",
+    "MaximumRetryAttempts": 0
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/databaseFunction/EventInvokeConfig/Resource"
+   }
+  },
+  "orderEventBusA352561C": {
+   "Type": "AWS::Events::EventBus",
+   "Properties": {
+    "Name": "local-event-driven-ticket-ordering-order"
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/order/EventBus/Resource"
+   }
+  },
+  "order03B6A43C": {
+   "Type": "AWS::Events::Rule",
+   "Properties": {
+    "EventBusName": {
+     "Ref": "orderEventBusA352561C"
+    },
+    "EventPattern": {
+     "source": [
+      "event-driven-ticket-ordering.order"
+     ],
+     "detail-type": [
+      "Order"
+     ]
+    },
+    "Name": "local-event-driven-ticket-ordering-order",
+    "State": "ENABLED",
+    "Targets": [
+     {
+      "Arn": {
+       "Fn::GetAtt": [
+        "orderTargetorderorderprocessOrderB7BAA2D3",
+        "Arn"
+       ]
+      },
+      "Id": "Target0"
+     },
+     {
+      "Arn": {
+       "Fn::GetAtt": [
+        "orderTargetorderordersendReceipt6A8285AC",
+        "Arn"
+       ]
+      },
+      "Id": "Target1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/order/order/Resource"
+   }
+  },
+  "orderAllowEventRulelocaleventdriventicketorderingLambdaorderTargetorderorderprocessOrderB8DF49A9C243BA70": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "orderTargetorderorderprocessOrderB7BAA2D3",
+      "Arn"
+     ]
+    },
+    "Principal": "events.amazonaws.com",
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "order03B6A43C",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/order/order/AllowEventRulelocaleventdriventicketorderingLambdaorderTargetorderorderprocessOrderB8DF49A9"
+   }
+  },
+  "orderAllowEventRulelocaleventdriventicketorderingLambdaorderTargetorderordersendReceipt2AA7B0BD55F0E459": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "orderTargetorderordersendReceipt6A8285AC",
+      "Arn"
+     ]
+    },
+    "Principal": "events.amazonaws.com",
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "order03B6A43C",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/order/order/AllowEventRulelocaleventdriventicketorderingLambdaorderTargetorderordersendReceipt2AA7B0BD"
+   }
+  },
+  "orderTargetorderorderprocessOrderServiceRoleF5EC63C7": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/order/Target_order_order_processOrder/ServiceRole/Resource"
+   }
+  },
+  "orderTargetorderorderprocessOrderServiceRoleDefaultPolicyF392BF4D": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "xray:PutTraceSegments",
+        "xray:PutTelemetryRecords"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "s3:*",
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt/*"
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "orderTargetorderorderprocessOrderServiceRoleDefaultPolicyF392BF4D",
+    "Roles": [
+     {
+      "Ref": "orderTargetorderorderprocessOrderServiceRoleF5EC63C7"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/order/Target_order_order_processOrder/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "orderTargetorderorderprocessOrderB7BAA2D3": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-995395610326-ap-southeast-2",
+     "S3Key": "98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "orderTargetorderorderprocessOrderServiceRoleF5EC63C7",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "SST_DEBUG_SRC_PATH": "services",
+      "SST_DEBUG_SRC_HANDLER": "functions/processOrder.handler",
+      "SST_DEBUG_ENDPOINT": "wss://5pjwyimqz8.execute-api.ap-southeast-2.amazonaws.com/local",
+      "SST_DEBUG_BUCKET_NAME": "local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+      "SST_FUNCTION_ID": "local-event-driven-ticket-ordering-Lambda-order-Target_order_order_processOrder",
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.main",
+    "MemorySize": 1024,
+    "Runtime": "nodejs16.x",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ],
+    "Timeout": 10,
+    "TracingConfig": {
+     "Mode": "Active"
+    }
+   },
+   "DependsOn": [
+    "orderTargetorderorderprocessOrderServiceRoleDefaultPolicyF392BF4D",
+    "orderTargetorderorderprocessOrderServiceRoleF5EC63C7"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/order/Target_order_order_processOrder/Resource",
+    "aws:asset:path": "asset.98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "orderTargetorderorderprocessOrderEventInvokeConfigFFD9F5E0": {
+   "Type": "AWS::Lambda::EventInvokeConfig",
+   "Properties": {
+    "FunctionName": {
+     "Ref": "orderTargetorderorderprocessOrderB7BAA2D3"
+    },
+    "Qualifier": "$LATEST",
+    "MaximumRetryAttempts": 0
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/order/Target_order_order_processOrder/EventInvokeConfig/Resource"
+   }
+  },
+  "orderTargetorderordersendReceiptServiceRoleF163EFA6": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/order/Target_order_order_sendReceipt/ServiceRole/Resource"
+   }
+  },
+  "orderTargetorderordersendReceiptServiceRoleDefaultPolicy7AB7B464": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "xray:PutTraceSegments",
+        "xray:PutTelemetryRecords"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "s3:*",
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt/*"
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "orderTargetorderordersendReceiptServiceRoleDefaultPolicy7AB7B464",
+    "Roles": [
+     {
+      "Ref": "orderTargetorderordersendReceiptServiceRoleF163EFA6"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/order/Target_order_order_sendReceipt/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "orderTargetorderordersendReceipt6A8285AC": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-995395610326-ap-southeast-2",
+     "S3Key": "98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "orderTargetorderordersendReceiptServiceRoleF163EFA6",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "SST_DEBUG_SRC_PATH": "services",
+      "SST_DEBUG_SRC_HANDLER": "functions/sendReceipt.handler",
+      "SST_DEBUG_ENDPOINT": "wss://5pjwyimqz8.execute-api.ap-southeast-2.amazonaws.com/local",
+      "SST_DEBUG_BUCKET_NAME": "local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+      "SST_FUNCTION_ID": "local-event-driven-ticket-ordering-Lambda-order-Target_order_order_sendReceipt",
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.main",
+    "MemorySize": 1024,
+    "Runtime": "nodejs16.x",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ],
+    "Timeout": 10,
+    "TracingConfig": {
+     "Mode": "Active"
+    }
+   },
+   "DependsOn": [
+    "orderTargetorderordersendReceiptServiceRoleDefaultPolicy7AB7B464",
+    "orderTargetorderordersendReceiptServiceRoleF163EFA6"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/order/Target_order_order_sendReceipt/Resource",
+    "aws:asset:path": "asset.98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "orderTargetorderordersendReceiptEventInvokeConfigAD7828DC": {
+   "Type": "AWS::Lambda::EventInvokeConfig",
+   "Properties": {
+    "FunctionName": {
+     "Ref": "orderTargetorderordersendReceipt6A8285AC"
+    },
+    "Qualifier": "$LATEST",
+    "MaximumRetryAttempts": 0
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/order/Target_order_order_sendReceipt/EventInvokeConfig/Resource"
+   }
+  },
+  "apiApiC3C473D0": {
+   "Type": "AWS::ApiGatewayV2::Api",
+   "Properties": {
+    "CorsConfiguration": {
+     "AllowHeaders": [
+      "*"
+     ],
+     "AllowMethods": [
+      "*"
+     ],
+     "AllowOrigins": [
+      "*"
+     ]
+    },
+    "Name": "local-event-driven-ticket-ordering-api",
+    "ProtocolType": "HTTP",
+    "Tags": {
+     "sst:app": "event-driven-ticket-ordering",
+     "sst:stage": "local"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Api/Resource"
+   }
+  },
+  "apiApiDefaultStageA626ED4D": {
+   "Type": "AWS::ApiGatewayV2::Stage",
+   "Properties": {
+    "ApiId": {
+     "Ref": "apiApiC3C473D0"
+    },
+    "StageName": "$default",
+    "AccessLogSettings": {
+     "DestinationArn": {
+      "Fn::GetAtt": [
+       "apiLogGroup924E5B7A",
+       "Arn"
+      ]
+     },
+     "Format": "{\"requestTime\":\"$context.requestTime\",\"requestId\":\"$context.requestId\",\"httpMethod\":\"$context.httpMethod\",\"path\":\"$context.path\",\"routeKey\":\"$context.routeKey\",\"status\":$context.status,\"responseLatency\":$context.responseLatency,\"integrationRequestId\":\"$context.integration.requestId\",\"integrationStatus\":\"$context.integration.status\",\"integrationLatency\":\"$context.integration.latency\",\"integrationServiceStatus\":\"$context.integration.integrationStatus\",\"ip\":\"$context.identity.sourceIp\",\"userAgent\":\"$context.identity.userAgent\",\"cognitoIdentityId\":\"$context.identity.cognitoIdentityId\"}"
+    },
+    "AutoDeploy": true,
+    "Tags": {
+     "sst:app": "event-driven-ticket-ordering",
+     "sst:stage": "local"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Api/DefaultStage/Resource"
+   }
+  },
+  "apiLogGroup924E5B7A": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": {
+     "Fn::Join": [
+      "",
+      [
+       "/aws/vendedlogs/apis/local-event-driven-ticket-ordering-api-",
+       {
+        "Ref": "apiApiC3C473D0"
+       },
+       "/default"
+      ]
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/LogGroup/Resource"
+   }
+  },
+  "apiLambdaGETServiceRole57A117D1": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Lambda_GET_--/ServiceRole/Resource"
+   }
+  },
+  "apiLambdaGETServiceRoleDefaultPolicyE9384899": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "xray:PutTraceSegments",
+        "xray:PutTelemetryRecords"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "s3:*",
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt/*"
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "OrdersTable1F8332C7",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "OrdersTable1F8332C7",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "events:*",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "orderEventBusA352561C",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "apiLambdaGETServiceRoleDefaultPolicyE9384899",
+    "Roles": [
+     {
+      "Ref": "apiLambdaGETServiceRole57A117D1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Lambda_GET_--/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "apiLambdaGET2D5CB7A7": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-995395610326-ap-southeast-2",
+     "S3Key": "98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "apiLambdaGETServiceRole57A117D1",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "busName": {
+       "Ref": "orderEventBusA352561C"
+      },
+      "tableName": {
+       "Ref": "OrdersTable1F8332C7"
+      },
+      "SST_DEBUG_SRC_PATH": "services",
+      "SST_DEBUG_SRC_HANDLER": "functions/helloWorld.handler",
+      "SST_DEBUG_ENDPOINT": "wss://5pjwyimqz8.execute-api.ap-southeast-2.amazonaws.com/local",
+      "SST_DEBUG_BUCKET_NAME": "local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+      "SST_FUNCTION_ID": "local-event-driven-ticket-ordering-Lambda-api-Lambda_GET_-",
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+      "SST_DEBUG_IS_API_ROUTE": "1"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.main",
+    "MemorySize": 1024,
+    "Runtime": "nodejs16.x",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ],
+    "Timeout": 10,
+    "TracingConfig": {
+     "Mode": "Active"
+    }
+   },
+   "DependsOn": [
+    "apiLambdaGETServiceRoleDefaultPolicyE9384899",
+    "apiLambdaGETServiceRole57A117D1"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Lambda_GET_--/Resource",
+    "aws:asset:path": "asset.98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "apiLambdaGETEventInvokeConfig794FB4BC": {
+   "Type": "AWS::Lambda::EventInvokeConfig",
+   "Properties": {
+    "FunctionName": {
+     "Ref": "apiLambdaGET2D5CB7A7"
+    },
+    "Qualifier": "$LATEST",
+    "MaximumRetryAttempts": 0
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Lambda_GET_--/EventInvokeConfig/Resource"
+   }
+  },
+  "apiRouteGETIntegrationGET451F73F0": {
+   "Type": "AWS::ApiGatewayV2::Integration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "apiApiC3C473D0"
+    },
+    "IntegrationType": "AWS_PROXY",
+    "IntegrationUri": {
+     "Fn::GetAtt": [
+      "apiLambdaGET2D5CB7A7",
+      "Arn"
+     ]
+    },
+    "PayloadFormatVersion": "2.0"
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Route_GET_--/Integration_GET_--/Resource"
+   }
+  },
+  "apiRouteGETIntegrationGETPermission02100559": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "apiLambdaGET2D5CB7A7",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-southeast-2:995395610326:",
+       {
+        "Ref": "apiApiC3C473D0"
+       },
+       "/*/*/"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Route_GET_--/Integration_GET_---Permission"
+   }
+  },
+  "apiRouteGET1A9E87AB": {
+   "Type": "AWS::ApiGatewayV2::Route",
+   "Properties": {
+    "ApiId": {
+     "Ref": "apiApiC3C473D0"
+    },
+    "RouteKey": "GET /",
+    "AuthorizationType": "NONE",
+    "Target": {
+     "Fn::Join": [
+      "",
+      [
+       "integrations/",
+       {
+        "Ref": "apiRouteGETIntegrationGET451F73F0"
+       }
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Route_GET_--/Resource"
+   }
+  },
+  "apiLambdaPOSTorderticketsServiceRoleDEF6D996": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--order-tickets/ServiceRole/Resource"
+   }
+  },
+  "apiLambdaPOSTorderticketsServiceRoleDefaultPolicy5E59FD51": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "xray:PutTraceSegments",
+        "xray:PutTelemetryRecords"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "s3:*",
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt/*"
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "OrdersTable1F8332C7",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "OrdersTable1F8332C7",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "events:*",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "orderEventBusA352561C",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "apiLambdaPOSTorderticketsServiceRoleDefaultPolicy5E59FD51",
+    "Roles": [
+     {
+      "Ref": "apiLambdaPOSTorderticketsServiceRoleDEF6D996"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--order-tickets/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "apiLambdaPOSTordertickets54E5CCA6": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-995395610326-ap-southeast-2",
+     "S3Key": "98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "apiLambdaPOSTorderticketsServiceRoleDEF6D996",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "busName": {
+       "Ref": "orderEventBusA352561C"
+      },
+      "tableName": {
+       "Ref": "OrdersTable1F8332C7"
+      },
+      "SST_DEBUG_SRC_PATH": "services",
+      "SST_DEBUG_SRC_HANDLER": "functions/orderTickets.handler",
+      "SST_DEBUG_ENDPOINT": "wss://5pjwyimqz8.execute-api.ap-southeast-2.amazonaws.com/local",
+      "SST_DEBUG_BUCKET_NAME": "local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+      "SST_FUNCTION_ID": "local-event-driven-ticket-ordering-Lambda-api-Lambda_POST_-order-tickets",
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+      "SST_DEBUG_IS_API_ROUTE": "1"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.main",
+    "MemorySize": 1024,
+    "Runtime": "nodejs16.x",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ],
+    "Timeout": 10,
+    "TracingConfig": {
+     "Mode": "Active"
+    }
+   },
+   "DependsOn": [
+    "apiLambdaPOSTorderticketsServiceRoleDefaultPolicy5E59FD51",
+    "apiLambdaPOSTorderticketsServiceRoleDEF6D996"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--order-tickets/Resource",
+    "aws:asset:path": "asset.98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "apiLambdaPOSTorderticketsEventInvokeConfig52D32175": {
+   "Type": "AWS::Lambda::EventInvokeConfig",
+   "Properties": {
+    "FunctionName": {
+     "Ref": "apiLambdaPOSTordertickets54E5CCA6"
+    },
+    "Qualifier": "$LATEST",
+    "MaximumRetryAttempts": 0
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--order-tickets/EventInvokeConfig/Resource"
+   }
+  },
+  "apiRoutePOSTorderticketsIntegrationPOSTordertickets7D683CD5": {
+   "Type": "AWS::ApiGatewayV2::Integration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "apiApiC3C473D0"
+    },
+    "IntegrationType": "AWS_PROXY",
+    "IntegrationUri": {
+     "Fn::GetAtt": [
+      "apiLambdaPOSTordertickets54E5CCA6",
+      "Arn"
+     ]
+    },
+    "PayloadFormatVersion": "2.0"
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Route_POST_--order-tickets/Integration_POST_--order-tickets/Resource"
+   }
+  },
+  "apiRoutePOSTorderticketsIntegrationPOSTorderticketsPermission3BABB361": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "apiLambdaPOSTordertickets54E5CCA6",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-southeast-2:995395610326:",
+       {
+        "Ref": "apiApiC3C473D0"
+       },
+       "/*/*/order-tickets"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Route_POST_--order-tickets/Integration_POST_--order-tickets-Permission"
+   }
+  },
+  "apiRoutePOSTorderticketsBD9FD06B": {
+   "Type": "AWS::ApiGatewayV2::Route",
+   "Properties": {
+    "ApiId": {
+     "Ref": "apiApiC3C473D0"
+    },
+    "RouteKey": "POST /order-tickets",
+    "AuthorizationType": "NONE",
+    "Target": {
+     "Fn::Join": [
+      "",
+      [
+       "integrations/",
+       {
+        "Ref": "apiRoutePOSTorderticketsIntegrationPOSTordertickets7D683CD5"
+       }
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Route_POST_--order-tickets/Resource"
+   }
+  },
+  "apiLambdaPOSTprocessServiceRole1F194F4B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--process/ServiceRole/Resource"
+   }
+  },
+  "apiLambdaPOSTprocessServiceRoleDefaultPolicyA53344ED": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "xray:PutTraceSegments",
+        "xray:PutTelemetryRecords"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "s3:*",
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+        "arn:aws:s3:::local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt/*"
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "OrdersTable1F8332C7",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "OrdersTable1F8332C7",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "events:*",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "orderEventBusA352561C",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "apiLambdaPOSTprocessServiceRoleDefaultPolicyA53344ED",
+    "Roles": [
+     {
+      "Ref": "apiLambdaPOSTprocessServiceRole1F194F4B"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--process/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "apiLambdaPOSTprocessDF2F9D1B": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-995395610326-ap-southeast-2",
+     "S3Key": "98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "apiLambdaPOSTprocessServiceRole1F194F4B",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "busName": {
+       "Ref": "orderEventBusA352561C"
+      },
+      "tableName": {
+       "Ref": "OrdersTable1F8332C7"
+      },
+      "SST_DEBUG_SRC_PATH": "services",
+      "SST_DEBUG_SRC_HANDLER": "functions/processOrder.handler",
+      "SST_DEBUG_ENDPOINT": "wss://5pjwyimqz8.execute-api.ap-southeast-2.amazonaws.com/local",
+      "SST_DEBUG_BUCKET_NAME": "local-event-driven-ticket-ordering-bucket83908e77-1g6j6q9p3v2zt",
+      "SST_FUNCTION_ID": "local-event-driven-ticket-ordering-Lambda-api-Lambda_POST_-process",
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+      "SST_DEBUG_IS_API_ROUTE": "1"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.main",
+    "MemorySize": 1024,
+    "Runtime": "nodejs16.x",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "event-driven-ticket-ordering"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "local"
+     }
+    ],
+    "Timeout": 10,
+    "TracingConfig": {
+     "Mode": "Active"
+    }
+   },
+   "DependsOn": [
+    "apiLambdaPOSTprocessServiceRoleDefaultPolicyA53344ED",
+    "apiLambdaPOSTprocessServiceRole1F194F4B"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--process/Resource",
+    "aws:asset:path": "asset.98f827321e3d694066de6587eb8d76b3631da91ce2cf8274ccc3469c68aed66e.zip",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "apiLambdaPOSTprocessEventInvokeConfigB8DFF10A": {
+   "Type": "AWS::Lambda::EventInvokeConfig",
+   "Properties": {
+    "FunctionName": {
+     "Ref": "apiLambdaPOSTprocessDF2F9D1B"
+    },
+    "Qualifier": "$LATEST",
+    "MaximumRetryAttempts": 0
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Lambda_POST_--process/EventInvokeConfig/Resource"
+   }
+  },
+  "apiRoutePOSTprocessIntegrationPOSTprocess8EB47971": {
+   "Type": "AWS::ApiGatewayV2::Integration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "apiApiC3C473D0"
+    },
+    "IntegrationType": "AWS_PROXY",
+    "IntegrationUri": {
+     "Fn::GetAtt": [
+      "apiLambdaPOSTprocessDF2F9D1B",
+      "Arn"
+     ]
+    },
+    "PayloadFormatVersion": "2.0"
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Route_POST_--process/Integration_POST_--process/Resource"
+   }
+  },
+  "apiRoutePOSTprocessIntegrationPOSTprocessPermission02064B6C": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "apiLambdaPOSTprocessDF2F9D1B",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-southeast-2:995395610326:",
+       {
+        "Ref": "apiApiC3C473D0"
+       },
+       "/*/*/process"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Route_POST_--process/Integration_POST_--process-Permission"
+   }
+  },
+  "apiRoutePOSTprocessD2E092DB": {
+   "Type": "AWS::ApiGatewayV2::Route",
+   "Properties": {
+    "ApiId": {
+     "Ref": "apiApiC3C473D0"
+    },
+    "RouteKey": "POST /process",
+    "AuthorizationType": "NONE",
+    "Target": {
+     "Fn::Join": [
+      "",
+      [
+       "integrations/",
+       {
+        "Ref": "apiRoutePOSTprocessIntegrationPOSTprocess8EB47971"
+       }
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "local-event-driven-ticket-ordering-Lambda/api/Route_POST_--process/Resource"
+   }
+  }
+ },
+ "Outputs": {
+  "ApiEndpoint": {
+   "Value": {
+    "Fn::GetAtt": [
+     "apiApiC3C473D0",
+     "ApiEndpoint"
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
