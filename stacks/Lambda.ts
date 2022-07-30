@@ -19,8 +19,6 @@ export function Lambda({ stack }: StackContext) {
     },
   });
 
-  console.log("TABLE NAME", table.tableName);
-
   new Function(stack, "databaseFunction", {
     handler: "functions/processOrder.handler",
     environment: {
@@ -30,6 +28,13 @@ export function Lambda({ stack }: StackContext) {
   });
 
   const bus = new EventBus(stack, "order", {
+    defaults: {
+      function: {
+        timeout: 20,
+        environment: { TABLE_NAME: table.tableName },
+        permissions: [table],
+      },
+    },
     rules: {
       order: {
         pattern: {
@@ -52,12 +57,13 @@ export function Lambda({ stack }: StackContext) {
         permissions: [table],
         environment: {
           busName: bus.eventBusName,
-          tableName: table.tableName,
+          TABLE_NAME: table.tableName,
         },
       },
     },
     routes: {
       "GET /": "functions/helloWorld.handler",
+      "GET /list-tickets": "functions/listTickets.handler",
       "POST /order-tickets": "functions/orderTickets.handler",
       "POST /process": "functions/processOrder.handler",
     },
@@ -68,4 +74,9 @@ export function Lambda({ stack }: StackContext) {
   stack.addOutputs({
     ApiEndpoint: lambda.url,
   });
+
+  return {
+    table,
+    lambda,
+  };
 }

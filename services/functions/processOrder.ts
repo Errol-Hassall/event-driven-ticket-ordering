@@ -12,7 +12,9 @@ const _processOrder = async (
 
   const entry = { customerId: event.id, order: event.detail };
 
-  console.log(await createEntry(entry));
+  const result = await createEntry(entry);
+
+  console.log({ result: result });
 
   return {
     statusCode: 202,
