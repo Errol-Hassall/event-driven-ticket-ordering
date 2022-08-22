@@ -23,3 +23,13 @@ export enum EventSource {
 export enum EventType {
   DETAIL_TYPE = "orderPlaced",
 }
+
+export type Seats = string[];
+
+export type Tickets = {
+  seats: Seats;
+};
+
+export type OrderTickets = {
+  tickets: Tickets;
+};

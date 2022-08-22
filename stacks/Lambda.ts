@@ -62,10 +62,8 @@ export function Lambda({ stack }: StackContext) {
       },
     },
     routes: {
-      "GET /": "functions/helloWorld.handler",
-      "GET /list-tickets": "functions/listTickets.handler",
-      "POST /order-tickets": "functions/orderTickets.handler",
-      "POST /process": "functions/processOrder.handler",
+      "GET /list-tickets": "functions/api/listTickets.handler",
+      "POST /order-tickets": "functions/api/orderTickets/orderTickets.handler",
     },
   });
 
