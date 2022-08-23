@@ -9,7 +9,8 @@
     "remove": "sst remove",
     "console": "sst console",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "start:frontend": "cd frontend && npm start"
   },
   "devDependencies": {
     "@serverless-stack/cli": "^1.4.0",

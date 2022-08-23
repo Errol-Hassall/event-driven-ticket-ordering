@@ -51,7 +51,7 @@ export function Lambda({ stack }: StackContext) {
 
   bus.attachPermissions(["dynamodb"]);
 
-  const lambda = new Api(stack, "api", {
+  const api = new Api(stack, "api", {
     defaults: {
       function: {
         permissions: [table],
@@ -67,14 +67,14 @@ export function Lambda({ stack }: StackContext) {
     },
   });
 
-  lambda.attachPermissions([bus, "dynamodb"]);
+  api.attachPermissions([bus, "dynamodb"]);
 
   stack.addOutputs({
-    ApiEndpoint: lambda.url,
+    ApiEndpoint: api.url,
   });
 
   return {
     table,
-    lambda,
+    api,
   };
 }

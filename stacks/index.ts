@@ -1,5 +1,7 @@
 import { Lambda } from "./Lambda";
 import { App } from "@serverless-stack/resources";
+import { FrontendStack } from "./FrontendStack";
+import { StorageStack } from "./StorageStack";
 
 export default function (app: App) {
   app.setDefaultFunctionProps({
@@ -9,5 +11,5 @@ export default function (app: App) {
       format: "esm",
     },
   });
-  app.stack(Lambda);
+  app.stack(Lambda).stack(StorageStack).stack(FrontendStack);
 }
