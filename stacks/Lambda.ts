@@ -15,7 +15,7 @@ export function Lambda({ stack }: StackContext) {
     primaryIndex: { partitionKey: "customerId" },
     stream: true,
     consumers: {
-      consumer: "functions/updateAvailability.handler",
+      consumer: "functions/database/updateAvailability.handler",
     },
   });
 
@@ -43,7 +43,7 @@ export function Lambda({ stack }: StackContext) {
         },
         targets: {
           processOrder: "functions/processOrder.handler",
-          sendReceipt: "functions/sendReceipt.handler",
+          sendReceipt: "functions/database/sendReceipt.handler",
         },
       },
     },
