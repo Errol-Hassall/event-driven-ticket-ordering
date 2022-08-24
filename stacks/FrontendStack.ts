@@ -10,6 +10,7 @@ export function FrontendStack({ stack, app }: StackContext) {
   const { api } = use(Lambda);
   // const { auth } = use(AuthStack);
   const { bucket } = use(StorageStack);
+  console.log(api);
 
   // Define our React app
   const site = new ReactStaticSite(stack, "ReactSite", {

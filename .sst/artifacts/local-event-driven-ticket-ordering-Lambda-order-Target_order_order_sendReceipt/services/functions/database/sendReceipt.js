@@ -207,9 +207,9 @@ var polyfillSetTimeoutPromise = () => {
 var setTimeoutPromise = polyfillSetTimeoutPromise();
 var core_default = middy;
 
-// services/functions/updateAvailability.ts
-var _processOrder = async (event, context) => {
-  console.log("UPDATE AVAILABILITY", event);
+// services/functions/database/sendReceipt.ts
+var _sendReceipt = async (event, context) => {
+  console.log("RECEIPT SENT", event);
   return {
     statusCode: 202,
     body: JSON.stringify({
@@ -217,8 +217,8 @@ var _processOrder = async (event, context) => {
     })
   };
 };
-var handler = core_default().handler(_processOrder);
+var handler = core_default().handler(_sendReceipt);
 export {
   handler
 };
-//# sourceMappingURL=updateAvailability.js.map
+//# sourceMappingURL=sendReceipt.js.map
