@@ -1,4 +1,4 @@
-before_build:
+before_compile:
   - cd frontend
   - npm install
   - cd ..
