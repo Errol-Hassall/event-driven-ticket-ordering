@@ -1,4 +1,5 @@
 before_compile:
+  - n 16.17.0
   - cd frontend
   - npm install
   - cd ..
