@@ -1,6 +1,5 @@
 import Button from "@mui/material/Button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Tickets } from "../../../services/types/types";
 import { postPlaceOrderForTickets } from "../api/postPlaceOrderForTickets";
 import { Seat, Seats } from "./SeatSelect";
 

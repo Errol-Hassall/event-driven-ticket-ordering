@@ -1,9 +1,9 @@
-import "./App.css";
 import Typography from "@mui/material/Typography";
-import BuyTicketsButton from "./components/BuyTicketButton";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import SeatSelect, { Seat, Seats } from "./components/SeatSelect";
-import { useState, useCallback } from "react";
+import { useCallback, useState } from "react";
+import "./App.css";
+import BuyTicketsButton from "./components/BuyTicketButton";
+import SeatSelect, { Seats } from "./components/SeatSelect";
 
 const queryClient = new QueryClient();
 
