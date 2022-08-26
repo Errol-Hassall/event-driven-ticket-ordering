@@ -1,0 +1,6 @@
+before_build:
+  - cd frontend
+  - npm install
+  - cd ..
+  - cd remix-frontend
+  - npm install
