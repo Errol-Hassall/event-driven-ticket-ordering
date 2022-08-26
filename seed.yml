@@ -1,14 +1,5 @@
 before_compile:
   - n 16.17.0
-  - echo "Folder structure $(ls)"
   - npm install
-  - cd frontend/
-  - echo "Folder structure $(ls)"
-  - npm install
-  - cd ..
-  - echo "Folder structure $(ls)"
-  - cd remix-frontend/
-  - echo "Folder structure $(ls)"
-  - npm install
-  - cd ..
-  - echo "Folder structure $(ls)"
+  - cd frontend/ && npm install
+  - cd remix-frontend/ && npm install
