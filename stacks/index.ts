@@ -1,8 +1,10 @@
-import { Lambda } from "./Lambda";
+import { LambdaStack } from "./LambdaStack";
 import { App } from "@serverless-stack/resources";
 import { FrontendStack } from "./FrontendStack";
 import { StorageStack } from "./StorageStack";
 import RemixStack from "./RemixStack";
+import { RouterStack } from "./RouterStack";
+import { DatabaseStack } from "./DatabaseStack";
 
 export default function (app: App) {
   app.setDefaultFunctionProps({
@@ -12,5 +14,11 @@ export default function (app: App) {
       format: "esm",
     },
   });
-  app.stack(Lambda).stack(StorageStack).stack(FrontendStack).stack(RemixStack);
+  app
+    .stack(DatabaseStack)
+    .stack(RouterStack)
+    .stack(LambdaStack)
+    .stack(StorageStack)
+    .stack(FrontendStack)
+    .stack(RemixStack);
 }

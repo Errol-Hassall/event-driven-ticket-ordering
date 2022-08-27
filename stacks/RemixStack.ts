@@ -1,8 +1,8 @@
 import { RemixSite, StackContext, use } from "@serverless-stack/resources";
-import { Lambda } from "./Lambda";
+import { LambdaStack } from "./LambdaStack";
 
 export default function RemixStack({ stack }: StackContext) {
-  const { api } = use(Lambda);
+  const { api } = use(LambdaStack);
 
   const site = new RemixSite(stack, "Site", {
     path: "remix-frontend/",

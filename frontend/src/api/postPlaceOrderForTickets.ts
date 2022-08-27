@@ -6,6 +6,7 @@ const orderTicketsUrl =
   "http://localhost:3000/order-tickets";
 
 export const postPlaceOrderForTickets = async (tickets: Tickets) => {
+  console.log("URL", orderTicketsUrl);
   try {
     const response = await axios.post(orderTicketsUrl, {
       tickets,
