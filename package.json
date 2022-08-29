@@ -5,7 +5,8 @@
   "scripts": {
     "start": "sst start",
     "build": "sst build",
-    "deploy": "sst deploy --stage=production",
+    "deploy:dev": "sst deploy --stage=dev",
+    "deploy:prod": "sst deploy --stage=production",
     "remove": "sst remove",
     "console": "sst console",
     "typecheck": "tsc --noEmit",
