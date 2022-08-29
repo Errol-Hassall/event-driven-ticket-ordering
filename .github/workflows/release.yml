@@ -20,17 +20,5 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-southeast-2
-      - name: Install dependencies base
-        run: npm install
-      - name: Install dependencies frontend
-        run: |
-          cd frontend/
-          npm install
-          cd ..
-      - name: Install dependencies remix
-        run: |
-          cd remix-frontend/
-          npm install
-          cd ..
       - name: Deploy stage=dev
         run: npm run deploy:dev
