@@ -31,4 +31,4 @@ jobs:
           npm install
           cd ..
       - name: Deploy stage=dev
-        run: npm run deploy
+        run: npm run deploy:dev
