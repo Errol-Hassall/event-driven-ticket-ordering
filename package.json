@@ -14,12 +14,12 @@
     "start:frontend": "cd frontend && npm start"
   },
   "devDependencies": {
-    "@serverless-stack/cli": "^1.4.0",
-    "@serverless-stack/resources": "^1.4.0",
+    "@serverless-stack/cli": "^1.10.5",
+    "@serverless-stack/resources": "^1.10.5",
     "@tsconfig/node16": "^1.0.3",
-    "aws-cdk-lib": "2.24.0",
+    "aws-cdk-lib": "2.32.0",
     "typescript": "^4.7.4",
-    "vitest": "^0.18.1"
+    "vitest": "^0.22.1"
   },
   "workspaces": [
     "services",

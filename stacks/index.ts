@@ -19,6 +19,6 @@ export default function (app: App) {
     .stack(RouterStack)
     .stack(LambdaStack)
     .stack(StorageStack)
-    .stack(FrontendStack)
-    .stack(RemixStack);
+    .stack(FrontendStack);
+  // .stack(RemixStack); removed for now
 }
