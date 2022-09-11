@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "start:frontend": "cd frontend && npm start",
-    "start:frontend:remix": "cd remix-frontend && npm run dev"
+    "start:frontend:svelte": "cd frontend-svelte && npm run dev"
   },
   "devDependencies": {
     "@serverless-stack/cli": "^1.10.5",
@@ -26,7 +26,7 @@
   "workspaces": [
     "services",
     "frontend",
-    "remix-frontend"
+    "frontend-svelte"
   ],
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.168.0",
