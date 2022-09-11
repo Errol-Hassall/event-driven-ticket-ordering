@@ -2,7 +2,6 @@ import { LambdaStack } from "./LambdaStack";
 import { App } from "@serverless-stack/resources";
 import { FrontendStack } from "./FrontendStack";
 import { StorageStack } from "./StorageStack";
-import RemixStack from "./RemixStack";
 import { RouterStack } from "./RouterStack";
 import { DatabaseStack } from "./DatabaseStack";
 
