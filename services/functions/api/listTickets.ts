@@ -20,6 +20,7 @@ const _listTickets = async (
     body: JSON.stringify({
       completed: true,
       items: result.Items,
+      count: result.Items?.length,
     }),
   };
 };

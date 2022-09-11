@@ -11,7 +11,8 @@
     "console": "sst console",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "start:frontend": "cd frontend && npm start"
+    "start:frontend": "cd frontend && npm start",
+    "start:frontend:remix": "cd remix-frontend && npm run dev"
   },
   "devDependencies": {
     "@serverless-stack/cli": "^1.10.5",
