@@ -32,4 +32,5 @@ export type Tickets = {
 
 export type OrderTickets = {
   tickets: Tickets;
+  email: string;
 };

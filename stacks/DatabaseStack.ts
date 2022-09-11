@@ -12,16 +12,7 @@ export function DatabaseStack({ stack }: StackContext) {
     },
   });
 
-  const processOrderFunction = new Function(stack, "process-order", {
-    handler: "functions/processOrder.handler",
-    environment: {
-      TABLE_NAME: table.tableName,
-    },
-    permissions: [table, "dynamodb"],
-  });
-
   return {
     table,
-    processOrderFunction,
   };
 }

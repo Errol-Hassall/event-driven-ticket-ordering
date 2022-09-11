@@ -1,12 +1,10 @@
 import middy from "@middy/core";
 import { APIGatewayEvent, APIGatewayProxyResult, Context } from "aws-lambda";
-import AWS from "aws-sdk";
 import { createEntry } from "../database/database";
-const DynamoDb = new AWS.DynamoDB.DocumentClient();
 
 const _processOrder = async (
   event: APIGatewayEvent,
-  context: Context
+  _context: Context
 ): Promise<APIGatewayProxyResult> => {
   console.log("PROCESSED ORDER", event);
 

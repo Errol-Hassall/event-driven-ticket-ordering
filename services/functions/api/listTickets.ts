@@ -1,7 +1,7 @@
 import middy from "@middy/core";
 import httpErrorHandler from "@middy/http-error-handler";
 import jsonBodyParser from "@middy/http-json-body-parser";
-import { APIGatewayEvent, APIGatewayProxyResult, Context } from "aws-lambda";
+import { APIGatewayProxyResult } from "aws-lambda";
 import { getEntries } from "database/database";
 
 type EventHandler = {

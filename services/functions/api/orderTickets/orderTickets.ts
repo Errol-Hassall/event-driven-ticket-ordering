@@ -6,6 +6,8 @@ import { sendToRouter } from "../../../router/router";
 import { OrderTickets } from "../../../types/types";
 import validator from "@middy/validator";
 import httpErrorHandler from "@middy/http-error-handler";
+import { createEntry } from "database/database";
+import { v4 as uuidv4 } from "uuid";
 
 type EventHandler = {
   body: OrderTickets;
@@ -15,13 +17,20 @@ export const _orderTickets = async (
   event: EventHandler
 ): Promise<APIGatewayProxyResult> => {
   const tickets = event?.body?.tickets;
-
-  console.log("TAKEN ORDER", tickets);
+  const email = event?.body.email;
 
   try {
     const orderDetails = tickets;
 
-    const payload = takeOrderEvent(orderDetails);
+    const entry = {
+      customerId: uuidv4(),
+      order: orderDetails,
+      email,
+    };
+
+    const returnedItemFromDB = await createEntry(entry);
+
+    const payload = takeOrderEvent({ data: returnedItemFromDB });
 
     sendToRouter(payload);
     return { statusCode: 200, body: "published" };
@@ -37,6 +46,9 @@ const inputSchema = {
     body: {
       type: "object",
       properties: {
+        email: {
+          type: "string",
+        },
         tickets: {
           type: "object",
           properties: {
@@ -45,7 +57,7 @@ const inputSchema = {
           required: ["seats"],
         },
       },
-      required: ["tickets"],
+      required: ["tickets", "email"],
     },
   },
 };

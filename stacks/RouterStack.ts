@@ -20,14 +20,13 @@ export function RouterStack({ stack }: StackContext) {
           detailType: [EVENT_DETAIL_TYPE.order],
         },
         targets: {
-          processOrder: "functions/processOrder.handler",
           sendReceipt: "functions/database/sendReceipt.handler",
         },
       },
     },
   });
 
-  bus.attachPermissions(["dynamodb"]);
+  bus.attachPermissions("*");
 
   return {
     bus,
