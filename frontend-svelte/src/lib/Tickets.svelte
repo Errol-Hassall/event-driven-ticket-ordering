@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Seat, Seats } from "../types";
+  import type { Seat, Seats } from "src/types";
 
   let buyTicketsResponse = false;
 
