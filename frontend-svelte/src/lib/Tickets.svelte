@@ -1,4 +1,6 @@
-<script>
+<script lang="ts">
+  import { Seat, Seats } from "../types";
+
   let buyTicketsResponse = false;
 
   let tickets = [
@@ -19,13 +21,13 @@
     },
   ];
 
-  let selectedTickets = [];
+  let selectedTickets: Seats = [];
 
-  const handleChange = (event, ticket) => {
+  const handleChange = (event, ticket: Seat) => {
     if (event.target.checked) {
       selectedTickets.push(ticket);
     } else {
-      selectedTickets.pop(ticket);
+      selectedTickets.pop();
     }
   };
 
