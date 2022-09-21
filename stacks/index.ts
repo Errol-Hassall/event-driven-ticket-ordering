@@ -5,6 +5,7 @@ import { StorageStack } from "./StorageStack";
 import { RouterStack } from "./RouterStack";
 import { DatabaseStack } from "./DatabaseStack";
 import { SvelteStack } from "./SvelteStack";
+import { QwikStack } from "./QwikStack";
 
 export default function (app: App) {
   app.setDefaultFunctionProps({
@@ -20,5 +21,6 @@ export default function (app: App) {
     .stack(LambdaStack)
     .stack(StorageStack)
     .stack(FrontendStack)
-    .stack(SvelteStack);
+    .stack(SvelteStack)
+    .stack(QwikStack);
 }
