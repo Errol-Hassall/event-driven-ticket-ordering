@@ -13,7 +13,7 @@
     "test": "vitest run",
     "start:frontend": "cd frontend && npm start",
     "start:frontend:svelte": "cd frontend-svelte && npm run dev",
-    "start:frontend:qwik": "cd frontend-qwik && npm run dev"
+    "start:frontend:solid": "cd frontend-solid && npm run dev"
   },
   "devDependencies": {
     "@serverless-stack/cli": "^1.10.5",
@@ -31,7 +31,7 @@
     "services",
     "frontend",
     "frontend-svelte",
-    "frontend-qwik"
+    "frontend-solid"
   ],
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.168.0",

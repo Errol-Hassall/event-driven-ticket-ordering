@@ -1,13 +1,12 @@
 import { StackContext, use, ViteStaticSite } from "@serverless-stack/resources";
 import { LambdaStack } from "./LambdaStack";
 
-export function QwikStack({ stack }: StackContext) {
+export function SolidStack({ stack }: StackContext) {
   const { api } = use(LambdaStack);
 
-  const site = new ViteStaticSite(stack, "SvelteSite", {
-    path: "frontend-qwik",
+  const site = new ViteStaticSite(stack, "SolidSite", {
+    path: "frontend-solid",
     environment: {
-      // Pass in the API endpoint to our app
       VITE_APP_API_URL: api.url,
     },
   });
